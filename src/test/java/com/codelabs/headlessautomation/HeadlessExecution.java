@@ -30,7 +30,7 @@ public class HeadlessExecution {
 				Runtime.getRuntime().exec("chmod 777 " + file.getAbsolutePath());
 				System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 			} else {
-				throw new Exception("undefined os type detected");
+				throw new Exception("undefined oss type detected");
 			}
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("headless");
