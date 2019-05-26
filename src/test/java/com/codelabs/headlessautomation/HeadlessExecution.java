@@ -12,10 +12,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HeadlessExecution {
-	WebDriver driver = null;
+	
 
-	@BeforeMethod
-	public void setUp() {
+
+	public WebDriver setUp() {
 		try {
 			String os = System.getProperty("os.name").toLowerCase();
 			File file = null;
@@ -32,17 +32,23 @@ public class HeadlessExecution {
 			} else {
 				throw new Exception("undefined os type detected");
 			}
+			
+			
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("headless");
-			driver = new ChromeDriver(options);
+			WebDriver driver = new ChromeDriver(options);
+			return driver;
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}
+		
 	}
 
 	@Test
 	public void testcase01() {
 
+		WebDriver driver = setUp();
 		try {
 
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -50,7 +56,81 @@ public class HeadlessExecution {
 			driver.get("http://localhost:8080/CodeLabsDemo/");
 			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
 			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
+			tearDown(driver);
+		} catch (Exception e) {
 
+			e.printStackTrace();
+
+		}
+	}
+	
+	@Test
+	public void testcase02() {
+
+		try {
+
+			WebDriver driver = setUp();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			driver.get("http://localhost:8080/CodeLabsDemo/");
+			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
+			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
+			tearDown(driver);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	@Test
+	public void testcase03() {
+
+		try {
+			WebDriver driver = setUp();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			driver.get("http://localhost:8080/CodeLabsDemo/");
+			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
+			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
+			tearDown(driver);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	
+	@Test
+	public void testcase04() {
+
+		try {
+			WebDriver driver = setUp();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			driver.get("http://localhost:8080/CodeLabsDemo/");
+			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
+			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
+			tearDown(driver);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
+	@Test
+	public void testcase05() {
+
+		try {
+			WebDriver driver = setUp();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			driver.get("http://localhost:8080/CodeLabsDemo/");
+			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
+			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
+			tearDown(driver);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -58,8 +138,8 @@ public class HeadlessExecution {
 		}
 	}
 
-	@AfterMethod(alwaysRun = true)
-	public void tearDown() {
+	
+	public void tearDown(WebDriver driver) {
 		if (driver != null) {
 			driver.close();
 			driver.quit();
