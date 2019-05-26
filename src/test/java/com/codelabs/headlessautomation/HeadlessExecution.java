@@ -46,7 +46,7 @@ public class HeadlessExecution {
 		try {
 
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			driver.manage().window().maximize();
+			//driver.manage().window().maximize();
 			driver.get("http://localhost:8080/CodeLabsDemo/");
 			driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
 			driver.findElement(By.xpath("//input[@id='UserRegistrationName']")).sendKeys("John Doe");
